@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>BCE Schaerbeek</title>
+    <link rel="shortcut icon" href="images/logo1030GeoData.ico" type="image/x-icon">
+    <meta http-equiv="content type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ïe=edge">
+    <meta charset="utf-8" />
+
+    <div id="CSS_Libraries">
+        <!-- Librerie Leaflet  https://unpkg.com/leaflet@1.7.1/dist/leaflet.css -->
+        <!-- <link rel="stylesheet" href="css/leaflet.css" /> -->
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+            crossorigin="" />
+
+        <!-- Extension  Esri Leaflet Geocoder  -->
+        <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.css"
+            integrity="sha512-IM3Hs+feyi40yZhDH6kV8vQMg4Fh20s9OzInIIAc4nx7aMYMfo+IenRUekoYsHZqGkREUgx0VvlEsgm7nCDW9g=="
+            crossorigin="">
+
+        <!-- Librerie Leaflet.markercluster https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css -->
+        <!-- Librerie Leaflet.markercluster https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css -->
+        <link rel="stylesheet" href="css/MarkerCluster.css">
+        <link rel="stylesheet" href="css/MarkerCluster.Default.css">
+
+        <!-- Extension Geoportail pour Leaflet http://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.css -->
+        <link rel="stylesheet" href="css/GpPluginLeaflet.css" />
+
+        <!-- Librerie Leaflet.EasyButton : https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/easy-button.css -->
+        <link rel="stylesheet" href="css/easy-button.css">
+
+        <!-- Libreria de estilo Bootstrape-->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- bibliothèque interne CSS -->
+        <link rel="stylesheet" href="css/style_html_bce_03.css">
+        <link rel="stylesheet" href="css/style_clusters.css">
+    </div>
+
+</head>
+
+<body id="ALL_HTML">
+    <html>
+
+    <body id="Internal_Body">
+        <div id="HTML_Heading">
+            <header class="page-header">
+                Entités commerciales installées à Schaerbeek
+            </header>
+            <br>
+        </div>
+
+        <div id="Region00">
+            <div id="Region04">
+                <div id="maCarte"></div>
+            </div>
+        </div>
+
+        <div id="Region01">
+            <div class="container">
+                <div class="row">
+                    <div class="shadow p-0 mb-2 bg-body rounded">
+                        <div class="fw-bolder">
+                            <h2 style="font-size:18px; font-style:italic; font-weight: bold; text-align: center">
+                                Recherches ciblées des informations sur <br> les entites commerciales à Schaerbeek (BCE)
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-3 mb">
+                                <label for="EntityNumBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Code entité BCE</label>
+                                <input type="text" class="form-control" id="EntityNumBCE" placeholder="code BCE..."
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-3 mb">
+                                <label for="EnterpNumBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Code entreprise BCE</label>
+                                <input type="text" class="form-control" id="EnterpNumBCE" placeholder="champ bloqué"
+                                    disabled style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-3 mb">
+                                <label for="NaceBCE" class="form-label" style="font-size: calc(0.5rem + 0.3vw)">Code
+                                    NACE-BEL</label>
+                                <input type="text" class="form-control" id="NaceBCE" placeholder="code NACE..."
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-3 mb">
+                                <label for="Classification" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Classification</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm"
+                                    id="Classification" placeholder="champ bloqué" disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <hr size=3>
+                        <div class="row justify-content-center">
+                            <div class="col-10 mb">
+                                <label for="NomBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Denomination de l'enterprise</label>
+                                <input type="text" class="form-control" id="NomBCE" placeholder="Denomination..."
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+
+                            <div class="col-3 mb">
+                                <label for="EntityTypeBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Type d'entite BCE</label>
+                                <input class="form-control" list="datalist_TypeEntity" id="EntityTypeBCE"
+                                    placeholder="Type d'Entite..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_TypeEntity">
+                                    <option value="Non renseigné">
+                                    <option value="Enterprise">
+                                    <option value="Establishment">
+                                    <option value="Branch">
+                                </datalist>
+                            </div>
+
+
+                            <div class="col-4 mb">
+                                <label for="TypeOfEnterprise" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Type d'enterprise</label>
+                                <input class="form-control" list="datalist_TypeEnterprise" id="TypeOfEnterprise"
+                                    placeholder="Type d'Enterprise..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_TypeEnterprise">
+                                    <option value="Personne morale">
+                                    <option value="Personne physique">
+                                </datalist>
+                            </div>
+                            <div class="col-5 mb">
+                                <label for="JuridicalForm" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Forme juridique</label>
+                                <input class="form-control" list="datalist_JuridicalForm" id="JuridicalForm"
+                                    placeholder="Forme juridique..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_JuridicalForm">
+                                    <option
+                                        value="Association d'assurances mutuelles / Caisse commune d'assurances de droit privé">
+                                    <option value="Association de CPAS">
+                                    <option value="Association des copropriétaires">
+                                    <option value="Association internationale sans but lucratif">
+                                    <option value="Association sans but lucratif">
+                                    <option value="Association sans but lucratif de droit public">
+                                    <option value="Autorité de la Communauté française">
+                                    <option value="Autorité de la Région de Bruxelles-Capitale">
+                                    <option value="Autorité de la Région flamande et de la Communauté flamande">
+                                    <option value="Autorité de la Région wallonne">
+                                    <option value="Autre forme à finalité sociale de droit public">
+                                    <option value="Autre forme de droit privé avec personnalité juridique">
+                                    <option value="Autre forme légale">
+                                    <option value="Autre service fédéral">
+                                    <option value="Centre public d'action sociale">
+                                    <option value="Corporation professionnelle / Ordre">
+                                    <option value="Entité étrangère">
+                                    <option
+                                        value="Entité étrangère sans établissement belge avec représentant responsable TVA">
+                                    <option value="Etablissement d'utilité publique">
+                                    <option value="Etablissement public">
+                                    <option value="Fondation d'utilité publique">
+                                    <option value="Fondation privée">
+                                    <option value="Forme légale inconnue (ONSS)">
+                                    <option value="Groupement d'intérêt économique">
+                                    <option value="Groupement européen d'intérêt économique">
+                                    <option value="Mutualité / Société Mutualiste / Union nationale de mutualités">
+                                    <option value="Organisation scientifique internationale de droit belge">
+                                    <option value="Organisme de financement de pensions">
+                                    <option value="Organisme public étranger ou international">
+                                    <option value="Organismes immatriculés pour l'O.N.P.">
+                                    <option value="Service public fédéral">
+                                    <option value="Société à responsabilité limitée">
+                                    <option value="Société à responsabilité limitée de droit public">
+                                    <option value="Société anonyme">
+                                    <option value="Société anonyme de droit public">
+                                    <option value="Société coopérative">
+                                    <option value="Société coopérative (ancien statut)">
+                                    <option value="Société coopérative à responsabilité illimitée">
+                                    <option value="Société coopérative à responsabilité limitée">
+                                    <option value="Société coopérative à responsabilité limitée à finalité sociale">
+                                    <option value="Société coopérative de droit public">
+                                    <option value="Société coopérative européenne">
+                                    <option value="Société en commandite">
+                                    <option value="Société en commandite par actions">
+                                    <option value="Société en commandite simple">
+                                    <option value="Société en nom collectif">
+                                    <option value="Société européenne (Societas Europaea)">
+                                    <option value="Société ou association sans personnalité juridique">
+                                    <option value="Société privée à responsabilité limitée">
+                                    <option value="Union professionnelle">
+                                    <option value="Unité TVA">
+                                    <option value="Ville / commune">
+                                    <option value="Zone de police locale">
+                                </datalist>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <hr size=3>
+                        <div class="row justify-content-center">
+                            <div class="col-4 mb-2">
+                                <label for="SecGroupBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Group Secteur Economique</label>
+                                <input class="form-control" list="datalist_SecEconomique" id="SecGroupBCE"
+                                    placeholder="Secteur Economique..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_SecEconomique">
+                                    <option value="Non renseigné">
+                                    <option value="Agriculture, Sylviculture Et Pêche">
+                                    <option value="Industries Extractives">
+                                    <option value="Industrie Manufacturière">
+                                    <option
+                                        value="Production Et Distribution D'Électricité, De Gaz, De Vapeur Et D'Air Conditionné">
+                                    <option
+                                        value="Production Et Distribution D'Eau; Assainissement, Gestion Des Déchets Et Dépollution">
+                                    <option value="Construction">
+                                    <option
+                                        value="Commerce De Gros Et De Detail; Réparation De Vehicules Automobiles Et De Motocycles">
+                                    <option value="Transports Et Entreposage">
+                                    <option value="Hébergement Et Restauration">
+                                    <option value="Information Et Communication">
+                                    <option value="Activités Financières Et D'Assurance">
+                                    <option value="Activités Immobilières">
+                                    <option value="Activités Spécialisées, Scientifiques Et Techniques">
+                                    <option value="Activités De Services Administratifs Et De Soutien">
+                                    <option value="Administration Publique Et Defense; Securie Sociale Obligatoire">
+                                    <option value="Enseignement">
+                                    <option value="Santé Humaine Et Action Sociale">
+                                    <option value="Arts, Spectacles Et Activités Récréatives">
+                                    <option value="Autres Activités De Services">
+                                    <option
+                                        value="Activités Des Ménages En Tant Qu'Employeurs; Activités Indifférenciées Des Ménages En Tant Que Producteurs De Biens Et Services Pour Usage Propre">
+                                    <option value="Activités Des Organismes Extra">
+                                </datalist>
+                            </div>
+
+                            <div class="col-2 mb-2">
+                                <label for="SecCodeBCE" class="form-label" style="font-size: calc(0.5rem + 0.3vw)">Code
+                                    Sector</label>
+                                <input type="text" class="form-control" id="SecCodeBCE" placeholder="bloqué" disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-3 mb-2">
+                                <label for="Division" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Division</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm" id="Division"
+                                    placeholder="champ bloqué" disabled style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-3 mb-2">
+                                <label for="Activites" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Activites</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm" id="Activites"
+                                    placeholder="champ bloqué" disabled style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <hr size=3>
+                        <div class="row justify-content-center">
+                            <div class="col-8 mb">
+                                <label for="StreetBCE" class="form-label" style="font-size: calc(0.5rem + 0.3vw)">Nom de
+                                    la rue à Schaerbeek</label>
+                                <input class="form-control" list="datalist_StreetFR" id="StreetBCE"
+                                    placeholder="rue 1030..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_StreetFR">
+                                    <option value="Non renseigné">
+                                    <option value="Allée des Freesias">
+                                    <option value="Avenue Adolphe Lacomblé">
+                                    <option value="Avenue Albert Desenfans">
+                                    <option value="Avenue Albert Giraud">
+                                    <option value="Avenue Ambassadeur Van Vollenhoven">
+                                    <option value="Avenue Charbo">
+                                    <option value="Avenue Charles Gilisquet">
+                                    <option value="Avenue Chazal">
+                                    <option value="Avenue Clays">
+                                    <option value="Avenue Colonel Picquart">
+                                    <option value="Avenue Dailly">
+                                    <option value="Avenue de La Brabançonne">
+                                    <option value="Avenue de La Jeunesse">
+                                    <option value="Avenue de La Reine">
+                                    <option value="Avenue de La Topaze">
+                                    <option value="Avenue de l'Emeraude">
+                                    <option value="Avenue de L'Héliport">
+                                    <option value="Avenue de L'Opale">
+                                    <option value="Avenue de Mars">
+                                    <option value="Avenue de Roodebeek">
+                                    <option value="Avenue des Azalées">
+                                    <option value="Avenue des Capucines">
+                                    <option value="Avenue des Cerisiers">
+                                    <option value="Avenue des Clos">
+                                    <option value="Avenue des Glycines">
+                                    <option value="Avenue des Héliotropes">
+                                    <option value="Avenue des Jacinthes">
+                                    <option value="Avenue des Jardins">
+                                    <option value="Avenue Docteur Dejase">
+                                    <option value="Avenue du Diamant">
+                                    <option value="Avenue du Suffrage Universel">
+                                    <option value="Avenue Emile Max">
+                                    <option value="Avenue Emile Verhaeren">
+                                    <option value="Avenue Emile Zola">
+                                    <option value="Avenue Ernest Cambier">
+                                    <option value="Avenue Ernest Renan">
+                                    <option value="Avenue Eugène Demolder">
+                                    <option value="Avenue Eugène Plasky">
+                                    <option value="Avenue Félix Marchal">
+                                    <option value="Avenue Fortin">
+                                    <option value="Avenue Frans Courtens">
+                                    <option value="Avenue Général Eisenhower">
+                                    <option value="Avenue Georges Eekhoud">
+                                    <option value="Avenue Georges Rodenbach">
+                                    <option value="Avenue Gustave Latinis">
+                                    <option value="Avenue Herbert Hoover">
+                                    <option value="Avenue Huart Hamoir">
+                                    <option value="Avenue Jacques Georgin">
+                                    <option value="Avenue Jan Stobbaerts">
+                                    <option value="Avenue Jean Jaurès">
+                                    <option value="Avenue Léon Mahillon">
+                                    <option value="Avenue Louis Bertrand">
+                                    <option value="Avenue Maréchal Foch">
+                                    <option value="Avenue Maurice Maeterlinck">
+                                    <option value="Avenue Milcamps">
+                                    <option value="Avenue Monplaisir">
+                                    <option value="Avenue Paul Deschanel">
+                                    <option value="Avenue Philippe Thomas">
+                                    <option value="Avenue Princesse Elisabeth">
+                                    <option value="Avenue Raymond Foucart">
+                                    <option value="Avenue Rogier">
+                                    <option value="Avenue Sleeckx">
+                                    <option value="Avenue Urbain Britsiers">
+                                    <option value="Avenue Voltaire">
+                                    <option value="Avenue Zénobe Gramme">
+                                    <option value="Boulevard Auguste Reyers">
+                                    <option value="Boulevard du Roi Albert Ii">
+                                    <option value="Boulevard Général Wahis">
+                                    <option value="Boulevard Lambermont">
+                                    <option value="Boulevard Léopold Iii">
+                                    <option value="Boulevard Simon Bolivar">
+                                    <option value="Chaussée de Haecht">
+                                    <option value="Chaussée de Helmet">
+                                    <option value="Chaussée de Louvain">
+                                    <option value="Chemin du Forgeron">
+                                    <option value="Cité Ouvrière de Linthout">
+                                    <option value="Clos des Artistes">
+                                    <option value="Clos des Fleurs">
+                                    <option value="Clos des Mouettes">
+                                    <option value="Clos des Poètes">
+                                    <option value="Clos du Chemin Creux">
+                                    <option value="Drève Recteur Van Waeyenbergh">
+                                    <option value="Grande Rue Au Bois">
+                                    <option value="Marais Moeraske">
+                                    <option value="Parc Albert I">
+                                    <option value="Parc Gaucheret">
+                                    <option value="Parc Josaphat">
+                                    <option value="Parc Lacroix">
+                                    <option value="Parc Rasquinet">
+                                    <option value="Parc Reine-Verte">
+                                    <option value="Parc Wahis">
+                                    <option value="Parc Walckiers">
+                                    <option value="Petite Rue des Secours">
+                                    <option value="Petite Rue L'Olivier">
+                                    <option value="Place Bichon">
+                                    <option value="Place Colignon">
+                                    <option value="Place Colonel Bremer">
+                                    <option value="Place Dailly">
+                                    <option value="Place de Helmet">
+                                    <option value="Place de Houffalize">
+                                    <option value="Place de Jamblinne de Meux">
+                                    <option value="Place de La Patrie">
+                                    <option value="Place de La Reine">
+                                    <option value="Place des Bienfaiteurs">
+                                    <option value="Place des Carabiniers">
+                                    <option value="Place des Chasseurs Ardennais">
+                                    <option value="Place du Pavillon">
+                                    <option value="Place Eugène Verboekhoven">
+                                    <option value="Place Gaucheret">
+                                    <option value="Place Général Meiser">
+                                    <option value="Place Lehon">
+                                    <option value="Place Liedts">
+                                    <option value="Place Masui">
+                                    <option value="Place Pogge">
+                                    <option value="Place Princesse Elisabeth">
+                                    <option value="Place Solvay">
+                                    <option value="Place Stephenson">
+                                    <option value="Place Terdelt">
+                                    <option value="Place Wappers">
+                                    <option value="Placette du Peuplier">
+                                    <option value="Quartier Brabant">
+                                    <option value="Quartier Collignon">
+                                    <option value="Quartier Dailly">
+                                    <option value="Quartier des Fleurs">
+                                    <option value="Quartier Diamant (Quartier Plasky)">
+                                    <option value="Quartier Gare de Schaerbeek">
+                                    <option value="Quartier Helmet">
+                                    <option value="Quartier Huart Hamoir">
+                                    <option value="Quartier Josaphat">
+                                    <option value="Quartier Gare du Nord">
+                                    <option value="Quartier Terdelt">
+                                    <option value="Rue Achille Detienne">
+                                    <option value="Rue Adolphe Marbotin">
+                                    <option value="Rue Aimé Smekens">
+                                    <option value="Rue Albert de Latour">
+                                    <option value="Rue Alexandre de Craene">
+                                    <option value="Rue Alexandre Markelbach">
+                                    <option value="Rue Allard">
+                                    <option value="Rue Anatole France">
+                                    <option value="Rue André Van Hasselt">
+                                    <option value="Rue Armand de Roo">
+                                    <option value="Rue Artan">
+                                    <option value="Rue Arthur Roland">
+                                    <option value="Rue Auguste Lambiotte">
+                                    <option value="Rue Auguste Snieders">
+                                    <option value="Rue Brichaut">
+                                    <option value="Rue Camille Simoens">
+                                    <option value="Rue Camille Wollès">
+                                    <option value="Rue Caporal Claes">
+                                    <option value="Rue Capronnier">
+                                    <option value="Rue Charles Meert">
+                                    <option value="Rue Charles Van Lerberghe">
+                                    <option value="Rue Charles Vanderstappen">
+                                    <option value="Rue Chaumontel">
+                                    <option value="Rue Colonel Bourg">
+                                    <option value="Rue Cornet de Grez">
+                                    <option value="Rue Creuse">
+                                    <option value="Rue D'Aerschot">
+                                    <option value="Rue D'Anethan">
+                                    <option value="Rue de Beughem">
+                                    <option value="Rue de Brabant">
+                                    <option value="Rue de Genève">
+                                    <option value="Rue de Jérusalem">
+                                    <option value="Rue de La Bruyère">
+                                    <option value="Rue de La Chaumière">
+                                    <option value="Rue de La Cible">
+                                    <option value="Rue de La Consolation">
+                                    <option value="Rue de La Constitution">
+                                    <option value="Rue de La Fraternité">
+                                    <option value="Rue de La Luzerne">
+                                    <option value="Rue de La Marne">
+                                    <option value="Rue de La Poste">
+                                    <option value="Rue de La Ruche">
+                                    <option value="Rue de L'Agriculture">
+                                    <option value="Rue de L'Est">
+                                    <option value="Rue de Linthout">
+                                    <option value="Rue de Locht">
+                                    <option value="Rue de L'Orme">
+                                    <option value="Rue de Moerkerke">
+                                    <option value="Rue de Potter">
+                                    <option value="Rue de Quatrecht">
+                                    <option value="Rue de Robiano">
+                                    <option value="Rue des Ailes">
+                                    <option value="Rue des Chardons">
+                                    <option value="Rue des Compagnons">
+                                    <option value="Rue des Coteaux">
+                                    <option value="Rue des Mimosas">
+                                    <option value="Rue des Palais">
+                                    <option value="Rue des Pâquerettes">
+                                    <option value="Rue des Pavots">
+                                    <option value="Rue des Pensées">
+                                    <option value="Rue des Plantes">
+                                    <option value="Rue Désiré Desmet">
+                                    <option value="Rue Destouvelles">
+                                    <option value="Rue D'Hoogvorst">
+                                    <option value="Rue Docteur Elie Lambotte">
+                                    <option value="Rue du Corbeau">
+                                    <option value="Rue du Dahlia">
+                                    <option value="Rue du Foyer Schaerbeekois">
+                                    <option value="Rue du Noyer">
+                                    <option value="Rue du Pavillon">
+                                    <option value="Rue du Progrès">
+                                    <option value="Rue du Radium">
+                                    <option value="Rue du Saphir">
+                                    <option value="Rue du Soleil">
+                                    <option value="Rue du Tilleul">
+                                    <option value="Rue Dupont">
+                                    <option value="Rue Edouard Fiers">
+                                    <option value="Rue Emile Wittmann">
+                                    <option value="Rue Emmanuel Hiel">
+                                    <option value="Rue Ernest Discailles">
+                                    <option value="Rue Ernest Laude">
+                                    <option value="Rue Eugène Smits">
+                                    <option value="Rue Fernand Séverin">
+                                    <option value="Rue Floris">
+                                    <option value="Rue Fontaine D'Amour">
+                                    <option value="Rue Fraikin">
+                                    <option value="Rue François Bossaerts">
+                                    <option value="Rue François Degreef">
+                                    <option value="Rue François-Joseph Navez">
+                                    <option value="Rue Frans Binjé">
+                                    <option value="Rue Frédéric Pelletier">
+                                    <option value="Rue Gallait">
+                                    <option value="Rue Gaucheret">
+                                    <option value="Rue Geefs">
+                                    <option value="Rue Gendebien">
+                                    <option value="Rue Général Eenens">
+                                    <option value="Rue Général Gratry">
+                                    <option value="Rue Georges Garnir">
+                                    <option value="Rue Georges Raeymaekers">
+                                    <option value="Rue Godefroid Devreese">
+                                    <option value="Rue Godefroid Guffens">
+                                    <option value="Rue Goossens">
+                                    <option value="Rue Grégoire Leroy">
+                                    <option value="Rue Guido Gezelle">
+                                    <option value="Rue Guillaume Kennis">
+                                    <option value="Rue Gustave Fuss">
+                                    <option value="Rue Gustave Huberti">
+                                    <option value="Rue Hancart">
+                                    <option value="Rue Henri Bergé">
+                                    <option value="Rue Henri Chomé">
+                                    <option value="Rue Henri Evenepoel">
+                                    <option value="Rue Henri Jacobs">
+                                    <option value="Rue Henri Stacquet">
+                                    <option value="Rue Henry Villard">
+                                    <option value="Rue Herman">
+                                    <option value="Rue Herman Richir">
+                                    <option value="Rue Hubert Krains">
+                                    <option value="Rue Iwan Gilkin">
+                                    <option value="Rue Jacques Jansen">
+                                    <option value="Rue Jacques Rayé">
+                                    <option value="Rue James Watt">
+                                    <option value="Rue Jan Blockx">
+                                    <option value="Rue Jean-Baptiste Brems">
+                                    <option value="Rue Jenatzy">
+                                    <option value="Rue Jolly">
+                                    <option value="Rue Josaphat">
+                                    <option value="Rue Joseph Brand">
+                                    <option value="Rue Joseph Coosemans">
+                                    <option value="Rue Joseph Jacquet">
+                                    <option value="Rue Joseph Van Camp">
+                                    <option value="Rue Joseph Wauters">
+                                    <option value="Rue Josse Impens">
+                                    <option value="Rue Jul Merckaert">
+                                    <option value="Rue Jules Destrée">
+                                    <option value="Rue Jules Lebrun">
+                                    <option value="Rue Julius Hoste">
+                                    <option value="Rue Kessels">
+                                    <option value="Rue Knapen">
+                                    <option value="Rue Lefrancq">
+                                    <option value="Rue Léon Frédéric">
+                                    <option value="Rue Léon Mignon">
+                                    <option value="Rue Léopold Courouble">
+                                    <option value="Rue Liedts">
+                                    <option value="Rue Linné">
+                                    <option value="Rue L'Olivier">
+                                    <option value="Rue Louis Scutenaire">
+                                    <option value="Rue Louis Socquet">
+                                    <option value="Rue Marcel Mariën">
+                                    <option value="Rue Marguerite Van de Wiele">
+                                    <option value="Rue Massaux">
+                                    <option value="Rue Masui">
+                                    <option value="Rue Maurice des Ombiaux">
+                                    <option value="Rue Max Roos">
+                                    <option value="Rue Metsys">
+                                    <option value="Rue Monrose">
+                                    <option value="Rue Nestor de Tière">
+                                    <option value="Rue Nicolas Defrêcheux">
+                                    <option value="Rue Paul Devigne">
+                                    <option value="Rue Paul Hymans">
+                                    <option value="Rue Paul Leduc">
+                                    <option value="Rue Philomène">
+                                    <option value="Rue Pierre Theunis">
+                                    <option value="Rue Portaels">
+                                    <option value="Rue Potagère">
+                                    <option value="Rue Quinaux">
+                                    <option value="Rue Rasson">
+                                    <option value="Rue Renkin">
+                                    <option value="Rue Richard Vandevelde">
+                                    <option value="Rue Roelandts">
+                                    <option value="Rue Rogier">
+                                    <option value="Rue Royale">
+                                    <option value="Rue Royale-Sainte-Marie">
+                                    <option value="Rue Rubens">
+                                    <option value="Rue Sander Pierron">
+                                    <option value="Rue Seutin">
+                                    <option value="Rue Stephenson">
+                                    <option value="Rue Stijn Streuvels">
+                                    <option value="Rue Teniers">
+                                    <option value="Rue Théo Coopman">
+                                    <option value="Rue Théodore Roosevelt">
+                                    <option value="Rue Thiéfry">
+                                    <option value="Rue Thomas Vinçotte">
+                                    <option value="Rue Van Droogenbroeck">
+                                    <option value="Rue Van Dyck">
+                                    <option value="Rue Van Hammée">
+                                    <option value="Rue Van Hoorde">
+                                    <option value="Rue Van Hove">
+                                    <option value="Rue Van Oost">
+                                    <option value="Rue Van Schoor">
+                                    <option value="Rue Van Ysendyck">
+                                    <option value="Rue Vandenbussche">
+                                    <option value="Rue Vanderlinden">
+                                    <option value="Rue Vandermeersch">
+                                    <option value="Rue Vandeweyer">
+                                    <option value="Rue Verbist">
+                                    <option value="Rue Verboeckhaven">
+                                    <option value="Rue Vergote">
+                                    <option value="Rue Verhas">
+                                    <option value="Rue Verte">
+                                    <option value="Rue Verwée">
+                                    <option value="Rue Victor Hugo">
+                                    <option value="Rue Victor Lefèvre">
+                                    <option value="Rue Victor Oudart">
+                                    <option value="Rue Victor Vanderhoeft">
+                                    <option value="Rue Vifquin">
+                                    <option value="Rue Vogler">
+                                    <option value="Rue Vonck">
+                                    <option value="Rue Vondel">
+                                    <option value="Rue Waelhem">
+                                    <option value="Rue Walckiers">
+                                    <option value="Rue Willem Kuhnen">
+                                    <option value="Rue William Degouve de Nuncques">
+                                    <option value="Sentier des Pommes">
+                                    <option value="Square Apollo">
+                                    <option value="Square des Griottiers">
+                                    <option value="Square Emile Duployé">
+                                    <option value="Square Eugène Plasky">
+                                    <option value="Square François Riga">
+                                    <option value="Square Levie">
+                                    <option value="Square Prévost-Delaunay">
+                                    <option value="Square Vergote">
+                                    <option value="Square Willy Authom">
+                                </datalist>
+                            </div>
+
+                            <div class="col-4 mb">
+                                <label for="QuartierBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Quartier Schaerbeek</label>
+                                <input class="form-control" list="datalist_Quartier" id="QuartierBCE"
+                                    placeholder="quartier..." style="font-size: calc(0.4rem + 0.3vw)">
+                                <datalist id="datalist_Quartier">
+                                    <option value="Dehors1030">
+                                    <option value="Helmet-Hamoir">
+                                    <option value="Terdelt-Fleur">
+                                    <option value="Jardin">
+                                    <option value="Reyers">
+                                    <option value="Cerisiers">
+                                    <option value="Linthout">
+                                    <option value="Plasky">
+                                    <option value="Bienfaiteurs">
+                                    <option value="Coteaux-Josaphat">
+                                    <option value="Palais-Reine">
+                                    <option value="Nord">
+                                    <option value="Colignon">
+                                    <option value="Parc Josaphat">
+                                </datalist>
+                            </div>
+
+                            <div class="col-12 mb-1">
+                                <label for="AdressesEntityBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Adresse de l'Entite</label>
+                                <input type="text" class="form-control" id="AdressesEntityBCE"
+                                    placeholder="champ bloqué" disabled style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                            <div class="col-12 mb-1">
+                                <label for="AddressEnterpriseBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Adresse de l'Entreprise</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm"
+                                    id="AddressEnterpriseBCE" placeholder="champ bloqué" disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-2 mb-1">
+                                <label for="LatitudeBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Latitude</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm"
+                                    id="LatitudeBCE" placeholder="bloqué" disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+
+                            <div class="col-2 mb-1">
+                                <label for="LongitudeBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Longitude</label>
+                                <input style="font-size: 11px" type="text" class="form-control input-sm"
+                                    id="LongitudeBCE" placeholder="bloqué" disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)">
+                            </div>
+
+                            <div class="col-8 mb-1">
+                                <label for="CommentairesBCE" class="form-label"
+                                    style="font-size: calc(0.5rem + 0.3vw)">Commentaires</label>
+                                <textarea rows="2" type="text" class="form-control input-sm" id="CommentairesBCE"
+                                    placeholder="aucun commentaires..." disabled
+                                    style="font-size: calc(0.4rem + 0.3vw)"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <hr size=3>
+                            <div class="col-2 ">
+                                <button id="btnSaveData" type="button" class="btn btn-success btn-sm"
+                                    onclick="SearchData()">Filter</button>
+                            </div>
+                            <div class="col-2 ">
+                                <button id="btnClear" type="button" class="btn btn-primary btn-sm"
+                                    onclick="ClearDataSearch()">Nettoyer</button>
+                            </div>
+                            <!--
+                            <div class="col-2 ">
+                                <button id="btnTable" type="button" class="btn btn-primary btn-sm"
+                                    style="background-color: #f57aad; border-color: #f57aad"
+                                    onclick="ViewTable()">Table</button>
+                            </div>
+                             -->
+                            <div class="col-2 ">
+                                <button id="btnClear" type="button" class="btn btn-primary btn-sm"
+                                    style="background-color: #eb4592; border-color: #eb4592"
+                                    onclick="Return()">Retour</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="HTML_Footer">
+            <br>
+            <footer id="footer">
+                <span>
+                    <a>© 2021 </a></a><a href="mailto:ihhilal@gmail.com" style="color: #eea4a4">I.H.Hilal</a>
+                    <a>Powered for the <a href="https://www.1030.be/" style="color: #eea4a4">commune de
+                            Schaerbeek</a><br>
+                        <a>The content of this page is under the Creative Commons license, <br>
+                            full information is available
+                            <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                                style="color: #eea4a4">here.</a><br>
+                            <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                                <img alt="Licencia Creative Commons" style="border-width:0" src="images/by-nc-sa.eu.png"
+                                    width="50" height="20"></a>
+                </span>
+            </footer>
+        </div>
+
+    </body>
+
+    </html>
+
+    <div id="JavaScript_Libraries">
+        <div id="GeoJSON_Data">
+            <!-- Fichiers Javascript Limites de Schaerbeek -->
+            <script src="databases/LimitesSchaerbeek_Contour.js" type="text/javascript"></script>
+            <!-- Fichiers Javascript Limites Secteurs SPEV de Schaerbeek -->
+            <script src="databases/LimitesSchaerbeekQuartiers_Contour.js" type="text/javascript"></script>
+            <!-- Fichiers Javascript Donnes Arbres Gérés par Schaerbeek-->
+            <script src="databases/BCE1030_202506.js" type="text/javascript"></script>
+        </div>
+
+        <div id="JavaScript_ExternalLibraries">
+            <!-- Fichiers Javascript leaflet -->
+            <!-- <script src="js/lib/leaflet.js"></script> -->
+            <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+                integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+                crossorigin=""></script>
+
+            <!-- Librerie Javascript Leaflet.markercluster https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js  -->
+            <script src="js/lib/leaflet.markercluster.js"></script>
+
+            <!-- Librerie Javascript Leaflet.MousePosition http://ignf.github.io/geoportal-extensions/leaflet-latest/dist/GpPluginLeaflet.js -->
+            <script src="js/lib/GpPluginLeaflet.js"></script>
+
+            <!-- Librerie Javascript Esri Leaflet Geocoder -->
+            <script src="https://unpkg.com/esri-leaflet@2.5.3/dist/esri-leaflet.js"
+                integrity="sha512-K0Vddb4QdnVOAuPJBHkgrua+/A9Moyv8AQEWi0xndQ+fqbRfAFd47z4A9u1AW/spLO0gEaiE1z98PK1gl5mC5Q=="
+                crossorigin=""></script>
+            <script src="https://unpkg.com/esri-leaflet-geocoder@2.3.3/dist/esri-leaflet-geocoder.js"
+                integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
+                crossorigin=""></script>
+
+            <!-- Librerie Javascript Leaflet.EasyButton https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/easy-button.js -->
+            <script src="js/lib/easy-button.js"></script>
+
+            <!-- Libreria javascript de Bootstrap-->
+            <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script> -->
+            <script src="js/bootstrap.bundle.min.js"></script>
+
+            <!-- bibliothèque interne JS -->
+            <script src="js/index_tiles.js"></script>
+            <script src="js/index_clusters_BCE.js"></script>
+            <script src="js/index_DataFilter_BCE.js"></script>
+            <script src="js/index_controlsFilter_BCE.js"></script>
+            <script src="js/index_ClearData_BCE.js"></script>
+
+            <script>
+                localStorage.setItem("EntityNumBCE0", document.getElementById("EntityNumBCE").value);
+                localStorage.setItem("EnterpNumBCE0", document.getElementById("EnterpNumBCE").value);
+                localStorage.setItem("EntityTypeBCE0", document.getElementById("EntityTypeBCE").value);
+                localStorage.setItem("NomBCE0", document.getElementById("NomBCE").value);
+                localStorage.setItem("NaceBCE0", document.getElementById("NaceBCE").value);
+                localStorage.setItem("SecCodeBCE0", document.getElementById("SecCodeBCE").value);
+                localStorage.setItem("SecGroupBCE0", document.getElementById("SecGroupBCE").value);
+                localStorage.setItem("AdressesEntityBCE0", document.getElementById("AdressesEntityBCE").value);
+                localStorage.setItem("AddressEnterpriseBCE0", document.getElementById("AddressEnterpriseBCE").value);
+                localStorage.setItem("StreetBCE0", document.getElementById("StreetBCE").value);
+                localStorage.setItem("QuartierBCE0", document.getElementById("QuartierBCE").value);
+                localStorage.setItem("LatitudeBCE0", document.getElementById("LatitudeBCE").value);
+                localStorage.setItem("LongitudeBCE0", document.getElementById("LongitudeBCE").value);
+                localStorage.setItem("CommentairesBCE0", document.getElementById("CommentairesBCE").value);
+
+                localStorage.setItem("TypeOfEnterprise0", document.getElementById("TypeOfEnterprise").value);
+                localStorage.setItem("Classification0", document.getElementById("Classification").value);
+                localStorage.setItem("JuridicalForm0", document.getElementById("JuridicalForm").value);
+                localStorage.setItem("Division0", document.getElementById("Division").value);
+                localStorage.setItem("Activites0", document.getElementById("Activites").value);
+
+                // localStorage.setItem("HouseNumBCE0", document.getElementById("HouseNumBCE").value);
+                // localStorage.setItem("CityBCE0", document.getElementById("CityBCE").value);
+
+                localStorage.clear();
+            </script>
+
+            <script>
+                function UpperLetters(e) {
+                    e.value = e.value.toUpperCase();
+                }
+
+                function LowerLetters(e) {
+                    e.value = e.value.toLowerCase();
+                }
+
+                function LocalData1030() {
+
+                    if (document.getElementById("CommentairesBCE").value == "") {
+                        document.getElementById("CommentairesBCE").value = "Vous pouvez effectuer une recherche en combinant différents critères...."
+                    } else {
+                        document.getElementById("CommentairesBCE").value = document.getElementById("CommentairesBCE").value
+                    }
+
+                    localStorage.setItem("EntityNumBCE0", document.getElementById("EntityNumBCE").value);
+                    localStorage.setItem("EnterpNumBCE0", document.getElementById("EnterpNumBCE").value);
+                    localStorage.setItem("EntityTypeBCE0", document.getElementById("EntityTypeBCE").value);
+                    localStorage.setItem("NomBCE0", document.getElementById("NomBCE").value);
+                    localStorage.setItem("NaceBCE0", document.getElementById("NaceBCE").value);
+                    localStorage.setItem("SecCodeBCE0", document.getElementById("SecCodeBCE").value);
+                    localStorage.setItem("SecGroupBCE0", document.getElementById("SecGroupBCE").value);
+                    localStorage.setItem("AdressesEntityBCE0", document.getElementById("AdressesEntityBCE").value);
+                    localStorage.setItem("AddressEnterpriseBCE0", document.getElementById("AddressEnterpriseBCE").value);
+                    localStorage.setItem("StreetBCE0", document.getElementById("StreetBCE").value);
+                    localStorage.setItem("QuartierBCE0", document.getElementById("QuartierBCE").value);
+                    localStorage.setItem("LatitudeBCE0", document.getElementById("LatitudeBCE").value);
+                    localStorage.setItem("LongitudeBCE0", document.getElementById("LongitudeBCE").value);
+                    localStorage.setItem("CommentairesBCE0", document.getElementById("CommentairesBCE").value);
+
+                    localStorage.setItem("TypeOfEnterprise0", document.getElementById("TypeOfEnterprise").value);
+                    localStorage.setItem("Classification0", document.getElementById("Classification").value);
+                    localStorage.setItem("JuridicalForm0", document.getElementById("JuridicalForm").value);
+                    localStorage.setItem("Division0", document.getElementById("Division").value);
+                    localStorage.setItem("Activites0", document.getElementById("Activites").value);
+
+                    // localStorage.setItem("HouseNumBCE0", document.getElementById("HouseNumBCE").value);
+                    // localStorage.setItem("CityBCE0", document.getElementById("CityBCE").value);
+                }
+            </script>
+
+            <script>
+                function Return() {
+                    window.open("Carte_BCESchaerbeek_ALL_20.html");
+                    window.close();
+                }
+
+                function ViewTable() {
+                    //LocalData1030();
+
+                    window.open("Carte_BCESchaerbeek_ALL_40.html");
+                    window.close();
+                }
+            </script>
+
+
+        </div>
+    </div>
+</body>
+
+</html>
