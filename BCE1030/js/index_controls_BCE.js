@@ -11,29 +11,29 @@ var CarteGroup = {
 };
 
 var GroupDataALL = {
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>agriculture, sylviculture et pêche</b></br>": GroupMarkersMap1030_Q01,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>industries extractives</b></br>": GroupMarkersMap1030_Q02,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>industrie manufacturière</b></br>": GroupMarkersMap1030_Q03,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>production et distribution d'électricité, de gaz, de vapeur et d'air conditionné</b></br>": GroupMarkersMap1030_Q04,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>production et distribution d'eau- assainissement, gestion des déchets et dépollution</b></br>": GroupMarkersMap1030_Q05,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>construction</b></br>": GroupMarkersMap1030_Q06,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>commerce de gros et de detail- réparation de vehicules automobiles et de motocycles</b></br>": GroupMarkersMap1030_Q07,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>transports et entreposage</b></br>": GroupMarkersMap1030_Q08,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>hébergement et restauration</b></br>": GroupMarkersMap1030_Q09,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>information et communication</b></br>": GroupMarkersMap1030_Q10,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités financières et d'assurance</b></br>": GroupMarkersMap1030_Q11,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités immobilières</b></br>": GroupMarkersMap1030_Q12,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités spécialisées, scientifiques et techniques</b></br>": GroupMarkersMap1030_Q13,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités de services administratifs et de soutien</b></br>": GroupMarkersMap1030_Q14,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>administration publique et defense- securie sociale obligatoire</b></br>": GroupMarkersMap1030_Q15,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>enseignement</b></br>": GroupMarkersMap1030_Q16,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>santé humaine et action sociale</b></br>": GroupMarkersMap1030_Q17,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>arts, spectacles et activités récréatives</b></br>": GroupMarkersMap1030_Q18,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>autres activités de services</b></br>": GroupMarkersMap1030_Q19,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités des ménages</b></br>": GroupMarkersMap1030_Q20,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>activités des organismes extra</b></br>": GroupMarkersMap1030_Q21,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>non renseigné</b></br>": GroupMarkersMap1030_Q22,
-    "<img src='src/images/icon-Entreprises.png' width='24px'/><b>Toutes les Entites</b></br>": GroupMarkersMap1030_00,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>agriculture, sylviculture et pêche</b></br>": GroupMarkersMap1030_Q01,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>industries extractives</b></br>": GroupMarkersMap1030_Q02,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>industrie manufacturière</b></br>": GroupMarkersMap1030_Q03,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>production et distribution d'électricité, de gaz, de vapeur et d'air conditionné</b></br>": GroupMarkersMap1030_Q04,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>production et distribution d'eau- assainissement, gestion des déchets et dépollution</b></br>": GroupMarkersMap1030_Q05,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>construction</b></br>": GroupMarkersMap1030_Q06,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>commerce de gros et de detail- réparation de vehicules automobiles et de motocycles</b></br>": GroupMarkersMap1030_Q07,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>transports et entreposage</b></br>": GroupMarkersMap1030_Q08,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>hébergement et restauration</b></br>": GroupMarkersMap1030_Q09,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>information et communication</b></br>": GroupMarkersMap1030_Q10,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités financières et d'assurance</b></br>": GroupMarkersMap1030_Q11,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités immobilières</b></br>": GroupMarkersMap1030_Q12,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités spécialisées, scientifiques et techniques</b></br>": GroupMarkersMap1030_Q13,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités de services administratifs et de soutien</b></br>": GroupMarkersMap1030_Q14,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>administration publique et defense- securie sociale obligatoire</b></br>": GroupMarkersMap1030_Q15,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>enseignement</b></br>": GroupMarkersMap1030_Q16,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>santé humaine et action sociale</b></br>": GroupMarkersMap1030_Q17,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>arts, spectacles et activités récréatives</b></br>": GroupMarkersMap1030_Q18,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>autres activités de services</b></br>": GroupMarkersMap1030_Q19,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités des ménages</b></br>": GroupMarkersMap1030_Q20,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>activités des organismes extra</b></br>": GroupMarkersMap1030_Q21,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>non renseigné</b></br>": GroupMarkersMap1030_Q22,
+    "<img src='images/icon-Entreprises.png' width='24px'/><b>Toutes les Entites</b></br>": GroupMarkersMap1030_00,
 };
 
 var LControl01 = L.control.layers(GroupDataALL).addTo(carte);
@@ -41,7 +41,7 @@ var LControl00 = L.control.layers(CarteGroup).addTo(carte);
 // ++++++++ Choix de cartes et Elements ++++++++
 
 // +++++++ Revient a la position initial ++++++++
-L.easyButton('<img src="src/images/home.png" width="26" height="26" >', function () {
+L.easyButton('<img src="images/home.png" width="26" height="26" >', function () {
     carte.setView([50.86070401717095, 4.3830651582691456], 13);
     layerGroup.clearLayers();
 }).addTo(carte);
@@ -64,7 +64,7 @@ function getLocationLeafvar() {
     carte.locate({ setView: true, maxZoom: 15 });
 }
 
-L.easyButton('<img src="src/images/gps-position.png" width="26" height="26" >', function () {
+L.easyButton('<img src="images/gps-position.png" width="26" height="26" >', function () {
     getLocationLeafvar()
 }).addTo(carte);
 
@@ -136,7 +136,7 @@ let myControl = new MyControlClass().addTo(carte);
 L.Control.Watermark = L.Control.extend({
     onAdd: function (carte) {
         var img = L.DomUtil.create('img');
-        img.src = 'src/images/schaerbeek1030_logo.png';
+        img.src = 'images/schaerbeek1030_logo.png';
         img.style.width = '75px';
 
         return img;
