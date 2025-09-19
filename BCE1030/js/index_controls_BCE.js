@@ -132,11 +132,46 @@ let MyControlClass = L.Control.extend({
 });
 let myControl = new MyControlClass().addTo(carte);
 
-// +++++++ .Watermark  +++++++++++++++++
+// +++++++ Menu principal  +++++++++++
+let ChartPopClass = L.Control.extend({
+    options: { position: 'topleft' },
+
+    onAdd: function (carte) {
+        var div = L.DomUtil.create('div', 'leaflet-bar my-control');
+
+        var myButton = L.DomUtil.create('button', 'my-button-class', div);
+        myButton.innerHTML = 'Affichage des statistiques globales';
+        myButton.style.width = '150px';
+        myButton.style.height = '30px';
+        L.DomEvent.on(myButton, 'click', function () {
+            window.open("BCE1030Charts.html");
+            window.close();
+        }, this);
+        return div;
+    },
+
+    onRemove: function (carte) {
+    }
+});
+let ChartPopControl = new ChartPopClass().addTo(carte);
+
+// +++++++ Title  +++++++++++
+var title = new L.Control({ 'position': 'bottomleft' });
+title.onAdd = function (carte) {
+    this._div = L.DomUtil.create('div', 'info');
+    this.update();
+    return this._div;
+};
+title.update = function () {
+    this._div.innerHTML = '<a style="font-size: 17px; background-color: white; border: 4px solid white">Entités commerciales BCE-1030</a>';
+};
+title.addTo(carte);
+
+// +++++++ .Watermark  ++++++++++
 L.Control.Watermark = L.Control.extend({
     onAdd: function (carte) {
         var img = L.DomUtil.create('img');
-        img.src = 'images/schaerbeek1030_logo.png';
+        img.src = 'images/schaerbeek1030_logo_white.png';
         img.style.width = '75px';
 
         return img;
