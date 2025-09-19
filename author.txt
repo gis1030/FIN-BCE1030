@@ -1,0 +1,7 @@
+I.H.Hilal, Dr.Eng
+Responsible for data analysis for the Municipality of Schaerbeek-DSI.
+Review and transformation of raw data.
+Development of predictive models.
+Design of computational algorithms.
+Control of actionable information for various applications.
+Assist in strategic decision-making.
